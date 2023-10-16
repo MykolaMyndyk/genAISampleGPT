@@ -58,6 +58,9 @@ public class Customer {
                     if(orderLine.getCode().equals(a1.getCode())){
 
                 orderLine.setQuantity(orderLine.getQuantity()+1);
+
+                count = orderLines.size();
+
                 return;//return statement
                     }
 
