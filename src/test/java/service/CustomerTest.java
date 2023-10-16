@@ -17,7 +17,7 @@ public class CustomerTest {
     @Before
     public void setUp() {
         List<OrderLine> orderLines = new ArrayList<>();
-        customer = new Customer("TestCustomer", 100, orderLines);
+        customer = new Customer("TestCustomer", orderLines);
     }
 
     @Test
@@ -28,7 +28,7 @@ public class CustomerTest {
         productToAdd.setQuantity(1);
         productToAdd.setPrice(10);
 
-        customer.addProduct(productToAdd, 0, 0, 0, 0, 0, 0);
+        customer.addProduct(productToAdd);
         List<OrderLine> orderLines = customer.getOrderLines();
 
         assertEquals(1, orderLines.size());
@@ -53,8 +53,8 @@ public class CustomerTest {
         product2.setQuantity(1);
         product2.setPrice(20);
 
-        customer.addProduct(product1, 0, 0, 0, 0, 0, 0);
-        customer.addProduct(product2, 0, 0, 0, 0, 0, 0);
+        customer.addProduct(product1);
+        customer.addProduct(product2);
         List<OrderLine> orderLines = customer.getOrderLines();
 
         assertEquals(2, orderLines.size());
@@ -85,7 +85,7 @@ public class CustomerTest {
         productToAdd.setQuantity(1);
         productToAdd.setPrice(10);
 
-        customer.addProduct(productToAdd, 0, 0, 0, 0, 0, 0);
+        customer.addProduct(productToAdd);
         List<OrderLine> orderLines = customer.getOrderLines();
 
         assertEquals(1, orderLines.size());
@@ -101,28 +101,10 @@ public class CustomerTest {
         productToAdd.setQuantity(1);
         productToAdd.setPrice(10);
 
-        customer.addProduct(productToAdd, 0, 0, 0, 0, 0, 0);
+        customer.addProduct(productToAdd);
 
         assertEquals(1, customer.count);
     }
-
-    @Test(expected = NullPointerException.class)
-    public void testAddProduct_NullInput() {
-        OrderLine existingProduct = new OrderLine();
-        existingProduct.setName("Product1");
-        existingProduct.setCode("123");
-        existingProduct.setQuantity(1);
-        existingProduct.setPrice(10);
-
-        customer.getOrderLines().add(existingProduct);
-
-        customer.addProduct(null, 0, 0, 0, 0, 0, 0);
-    }
-
-
-
-
-
 
     @Test
     public void testCalculateSum_CalculatesPricesOfAllOrderLines() {
